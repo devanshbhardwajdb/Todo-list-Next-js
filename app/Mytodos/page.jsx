@@ -1,19 +1,22 @@
 "use client"
+import Emailform from '@components/Emailform';
 import Todoitem from '@components/Todoitem';
-import React from 'react'
-import { useEffect, useState } from 'react';
-
+import React from 'react';
+import { useEffect,useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
 
+
+
 const Mytodos = () => {
-  const [todos, setTodos] = useState([]);
   
+  const [todos, setTodos] = useState([]);
+  const [emailData, setemailData] = useState({ email: "" });
+
+
 
   const showTodos = async (e) => {
-
-    // console.log("showing the todos")
+    e.preventDefault();
 
     try {
       const response = await fetch("/api/showtodos", {
@@ -23,7 +26,10 @@ const Mytodos = () => {
       if (response.ok) {
         const todosData = await response.json();
         setTodos(todosData);
-
+        setTodos(prevTodos => prevTodos.filter(todo => todo.email === emailData.email));
+        setemailData({email:""})
+        
+     
       }
       else {
         console.error("Server returned an error:", response.status, response.statusText);
@@ -33,10 +39,10 @@ const Mytodos = () => {
     }
 
   };
-
+ 
   const handleDelete = async (e) => {
-    
-    e.preventDefault(); 
+
+
 
     const hasConfirmed = confirm(
       "Are you sure you want to delete this Todo?"
@@ -49,26 +55,34 @@ const Mytodos = () => {
         });
         setTodos(prevTodos => prevTodos.filter(todo => todo._id !== todoId));
 
-        // const filteredTodos = todos.filter((item) => item.id !== todos._id);
 
-        // setTodos(filteredTodos);
       } catch (error) {
-        console.log("Yahan error hai bhai",error);
+        console.log("Yahan error hai bhai", error);
       }
     }
 
   }
-  useEffect(() => {
-
-
-    showTodos();
-  }, []);
 
 
   return (
     <div className='font-livvic px-[8vw] py-10 '>
-      <h1 className='font-bold text-2xl mb-10'>Todos</h1>
-      <Todoitem todos={todos} handleDelete={handleDelete} />
+      <Emailform showTodos={showTodos} emailData={emailData} setemailData={setemailData} />
+     
+        <h1 className='font-bold text-2xl mb-10' id="todoitems">Todos</h1>
+        <Todoitem todos={todos} handleDelete={handleDelete} />
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      
     </div>
   )
 }

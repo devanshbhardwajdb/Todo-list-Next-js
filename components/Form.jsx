@@ -16,7 +16,7 @@ const Form = ({ setFormData, handleSubmit, formData }) => {
                         value={formData.title}
                         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                         type='text'
-                        placeholder='Enter the title of your todo'
+                        placeholder='Enter the title'
                         required
                         className=' cursor-text px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-green-600 focus:shadow-sm focus:shadow-green-600 '
                     />
@@ -31,7 +31,22 @@ const Form = ({ setFormData, handleSubmit, formData }) => {
                         value={formData.description}
                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                         type='text'
-                        placeholder='Enter the description of your todo'
+                        placeholder='Enter the description'
+                        required
+                        className=' cursor-text px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-green-600 focus:shadow-sm focus:shadow-green-600 '
+                    />
+                </label>
+                <label className='flex flex-col gap-2 w-full'>
+                    <span className=' font-semibold text-base '>
+                        Email
+
+                    </span>
+                    <input
+
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        type='email'
+                        placeholder='Enter the email'
                         required
                         className=' cursor-text px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-green-600 focus:shadow-sm focus:shadow-green-600 '
                     />

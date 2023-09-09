@@ -9,10 +9,11 @@ const Todoitem = ({ todos, handleDelete }) => {
             <div className='font-livvic  flex flex-col gap-4'>
 
                 {todos.map(todo => (
-                    <div className='flex flex-col bg-gray-200 p-5 rounded-lg gap-2 '>
+                    <div className='flex flex-col bg-gray-200 p-5 rounded-lg gap-2  '>
 
-                        <h2 key={todo.id} className='font-bold '>{todo.title}</h2>
-                        <h2 key={todo.id}>{todo.description}</h2>
+                        <h2 key={todo.id} className='font-bold '>Title - {todo.title}</h2>
+                        <h2 key={todo.id}><span className="font-bold">Description - </span>{todo.description}</h2>
+                        <h2 key={todo.id}>{todo.email}</h2>
                         <div className='flex gap-3 text-white mt-5'>
                             <Link href={`/Edittodo/${todo._id}`}>
                                 <button className='px-3 py-2 bg-green-700  rounded-md  font-medium hover:scale-[98%] duration-300 hover:shadow-lg hover:shadow-green-600' >Edit</button>
