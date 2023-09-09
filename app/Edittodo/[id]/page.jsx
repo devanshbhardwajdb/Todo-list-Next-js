@@ -69,7 +69,7 @@ const Edittodo = ({params}) => {
   
   return (
     <div className='font-livvic px-[8vw] py-10 '>
-    <h1 className='font-bold text-2xl mb-10'>Todos</h1>
+    {/* <h1 className='font-bold text-2xl mb-10'>Todos</h1> */}
     <Editform todo={todo} setTodo={setTodo} handleSubmit={handleSubmit}/>
     
   </div>

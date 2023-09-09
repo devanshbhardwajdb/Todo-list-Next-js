@@ -1,8 +1,14 @@
 import React from 'react'
+import Lottie from "lottie-react";
+
+import A1 from "@/anime1.json"
 
 const Editform = ({ setTodo,  handleSubmit, todo }) => {
     return (
-        <div className='font-livvic  flex flex-col gap-8 w-full p-8 rounded-xl border border-gray-200 backdrop-blur-md items-start justify-center bg-gray-200'>
+        <div className='font-livvic  flex flex-col gap-8 w-full p-8 rounded-xl  overflow-hidden relative  items-start justify-center bg-transparent  max-lg:bg-gray-200   lg:min-h-[75vh]'>
+             <div className='absolute bottom-0 max-lg:hidden left-0 w-[84vw] z-[-100] opacity-30 overflow-hidden rounded-xl'>
+                <Lottie animationData={A1} loop={true} />
+            </div>
             <h4 className='font-bold text-2xl'>EDIT TODO</h4>
             <form className='flex flex-col gap-4 w-full' onSubmit={handleSubmit}>
                 
